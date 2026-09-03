@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f1e8">
+  <title>Study Mission | Assignment dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="." aria-label="Study Mission home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Study Mission</span>
+      </a>
+      <div class="topbar-note"><span class="pulse-dot" aria-hidden="true"></span> Your personal workspace</div>
+    </header>
+
+    <main>
+      <section class="welcome-row" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Assignment control room</p>
+          <h1 id="page-title">Make space for<br><em>what matters.</em></h1>
+          <p class="intro">A clear view of your schoolwork, so you always know what to tackle next.</p>
+        </div>
+        <button class="button button-primary" id="add-assignment-button" type="button">
+          <span class="plus-icon" aria-hidden="true">+</span> Add assignment
+        </button>
+      </section>
+
+      <section class="stats-grid" aria-label="Assignment overview">
+        <article class="stat-card stat-card-main">
+          <div class="stat-label"><span class="stat-symbol symbol-open" aria-hidden="true"></span>Still to do</div>
+          <strong id="unfinished-count">0</strong>
+          <span class="stat-foot">unfinished assignments</span>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label"><span class="stat-symbol symbol-done" aria-hidden="true"></span>Completed</div>
+          <strong id="completed-count">0</strong>
+          <span class="stat-foot">assignments finished</span>
+        </article>
+        <article class="stat-card stat-card-alert">
+          <div class="stat-label"><span class="stat-symbol symbol-high" aria-hidden="true">!</span>High priority</div>
+          <strong id="high-count">0</strong>
+          <span class="stat-foot">need extra attention</span>
+        </article>
+        <article class="next-up-card">
+          <div class="next-up-heading"><span class="stat-label">Next up</span><span class="arrow-mark" aria-hidden="true">↗</span></div>
+          <strong id="next-assignment">Nothing due yet</strong>
+          <span id="next-due" class="stat-foot">Your schedule is clear</span>
+        </article>
+      </section>
+
+      <section class="assignments-section" aria-labelledby="assignments-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="assignments-heading">Your assignments <span id="assignment-total" class="count-badge">0</span></h2>
+            <p id="list-caption">The closest deadlines are at the top.</p>
+          </div>
+          <label class="select-wrap">
+            <span class="sr-only">Filter assignments</span>
+            <select id="assignment-filter">
+              <option value="active">Unfinished</option>
+              <option value="all">All assignments</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+        </div>
+        <div id="assignment-list" class="assignment-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="footer"><span>Study Mission</span><span>Saved privately in this browser</span></footer>
+  </div>
+
+  <div class="modal-backdrop" id="assignment-modal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="icon-button close-button" id="close-modal" type="button" aria-label="Close form">×</button>
+      <p class="eyebrow" id="modal-eyebrow">New mission</p>
+      <h2 id="modal-title">Add an assignment</h2>
+      <p class="modal-subtitle">Give yourself a clear next step.</p>
+      <form id="assignment-form">
+        <input type="hidden" id="assignment-id">
+        <label class="field field-wide">Assignment name<input id="assignment-name" name="name" type="text" placeholder="e.g. Read chapter 4" maxlength="100" required></label>
+        <div class="field-row">
+          <label class="field">Subject<input id="assignment-subject" name="subject" type="text" placeholder="e.g. History" maxlength="40" required></label>
+          <label class="field">Due date<input id="assignment-due" name="due" type="date" required></label>
+        </div>
+        <fieldset class="priority-field"><legend>Priority</legend><div class="priority-options">
+          <label><input type="radio" name="priority" value="low" checked><span class="priority-choice priority-low">Low</span></label>
+          <label><input type="radio" name="priority" value="medium"><span class="priority-choice priority-medium">Medium</span></label>
+          <label><input type="radio" name="priority" value="high"><span class="priority-choice priority-high">High</span></label>
+        </div></fieldset>
+        <div class="form-actions"><button class="button button-quiet" id="cancel-modal" type="button">Cancel</button><button class="button button-primary" type="submit" id="save-assignment">Save assignment</button></div>
+      </form>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
